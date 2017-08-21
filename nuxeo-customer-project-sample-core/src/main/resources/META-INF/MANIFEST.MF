@@ -1,0 +1,13 @@
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Manifest-Version: 1.0
+Bundle-Vendor: com.customer.sample.operation
+Bundle-Version: 1.0.0
+Bundle-Name: nuxeo-customer-project-sample-core
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.customer.sample.operation.nuxeo-customer-project-sample-core;singleton=true
+Nuxeo-Component: OSGI-INF/customeroperation-operation-contrib.xml,
+ OSGI-INF/customerlistener-listener-contrib.xml,
+ OSGI-INF/customerasynclistener-listener-contrib.xml,
+ OSGI-INF/customer-enricher-contrib.xml,
+ OSGI-INF/sampleservice-service.xml

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<component name="com.customer.sample.service.SampleService" version="1.0">
+
+  <implementation class="com.customer.sample.service.SampleServiceImpl" />
+
+  <service>
+    <provide interface="com.customer.sample.service.SampleService" />
+  </service>
+</component>

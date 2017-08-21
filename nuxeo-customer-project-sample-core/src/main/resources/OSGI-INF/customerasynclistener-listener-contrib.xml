@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<component name="com.customer.sample.listener.listener.customerasynclistener">
+
+  <extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener">
+    <listener async="true" postCommit="true" name="customerasynclistener"
+      class="com.customer.sample.listener.CustomerAsyncListener">
+        <event>documentCreated</event>
+    </listener>
+  </extension>
+
+</component>

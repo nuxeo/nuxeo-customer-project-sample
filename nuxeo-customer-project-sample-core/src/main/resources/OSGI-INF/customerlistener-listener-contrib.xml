@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<component name="com.customer.sample.listener.listener.customerlistener">
+
+  <extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener">
+    <listener name="customerlistener"
+      class="com.customer.sample.listener.CustomerListener">
+        <event>aboutToCreate</event>
+    </listener>
+  </extension>
+
+</component>
