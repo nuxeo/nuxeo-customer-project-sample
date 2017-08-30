@@ -3,6 +3,9 @@ SCRIPT_DIR=$(dirname $(realpath ${BASH_SOURCE[0]}))
 TARGET_DIR=$SCRIPT_DIR/target
 SCRIPT_BIN=$TARGET_DIR/node_modules/.bin/nuxeo-bootstrap
 
+git clean -fd
+rm -rf .yo-rc.json pom.xml nuxeo-customer*
+
 mkdir -p $TARGET_DIR && cd $_ && npm install nuxeo/nuxeo-cli#master
 cd $SCRIPT_DIR
 
@@ -15,5 +18,3 @@ $SCRIPT_BIN enricher --package="com.customer.sample.enricher" --enricher_name="C
 $SCRIPT_BIN service --package="com.customer.sample.service" --service_name="SampleService"
 $SCRIPT_BIN polymer --name="sample" --route="sample"
 $SCRIPT_BIN package --name="custom-package" --company="Customer Company"
-
-mvn package
