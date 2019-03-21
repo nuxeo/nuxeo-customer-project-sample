@@ -8,7 +8,7 @@
   </parent>
   <artifactId>nuxeo-customer-project-sample-core</artifactId>
   <name>Nuxeo customer project sample core</name>
-  <description/>
+  <description />
 
   <dependencies>
     <dependency>

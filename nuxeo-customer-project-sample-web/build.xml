@@ -43,6 +43,7 @@
     <exec executable="${cmd.npm}" failonerror="true">
       <arg value="run" />
       <arg value="build" />
+      <env key="MAVEN_BUILD_DIR" value="${project.build.directory}" />
     </exec>
   </target>
 

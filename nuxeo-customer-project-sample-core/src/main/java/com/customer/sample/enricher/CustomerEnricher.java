@@ -6,7 +6,7 @@ import static org.nuxeo.ecm.core.io.registry.reflect.Priorities.REFERENCE;
 import java.io.IOException;
 import java.util.Collections;
 
-import org.codehaus.jackson.JsonGenerator;
+import com.fasterxml.jackson.core.JsonGenerator;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.io.marshallers.json.enrichers.AbstractJsonEnricher;
 import org.nuxeo.ecm.core.io.registry.reflect.Setup;
@@ -15,17 +15,16 @@ import org.nuxeo.ecm.core.io.registry.reflect.Setup;
  * Enrich {@link nuxeo.ecm.core.api.DocumentModel} Json.
  * <p>
  * Format is:
- *
+ * </p>
  * <pre>
  * {@code
  * {
  *   ...
  *   "contextParameters": {
- *     "customer": { ... }
+*     "customer": { ... }
  *   }
- * }
+ * }}
  * </pre>
- * </p>
  */
 @Setup(mode = SINGLETON, priority = REFERENCE)
 public class CustomerEnricher extends AbstractJsonEnricher<DocumentModel> {
