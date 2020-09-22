@@ -32,7 +32,7 @@ A Core Module usually contains new Java based new features not supported by [Nux
 Look at the [Nuxeo CLI](https://doc.nuxeo.com/nxdoc/nuxeo-cli/#page-title) documentation to discover what you can easily generate.
 Full documentation about [Nuxeo Bundle](https://doc.nuxeo.com/nxdoc/runtime-and-component-model/).
 
-### WebApp Module
+### WebApp Module - NXP-29691 Temporary Removed
 
 A WebApp Module usually contains your Polymer Web Application as a standalone project to let you develop it as any other webapp.
 
@@ -45,6 +45,28 @@ A Nuxeo Package usually contains installation instructions and optional constrai
 Full documentation about [Nuxeo Package](https://doc.nuxeo.com/nxdoc/creating-nuxeo-packages/).
 
 ## Building
+
+> **Required Configuration**:
+> Maven Repositories:
+>
+> *maven-internal*: Credentials Required, available on [https://package.nuxeo.com]()
+> ```xml
+> <server>
+>   <id>maven-internal</id>
+>   <username>username</username>
+>   <password>{9iw/tVNC+AgHtewewqeqidsa/3nWQFgKfeweqzGWpAyHIAuCull3IrrMOT8V112368sgw=}</password>
+> </server>
+> ```
+> 
+> *nuxeo-studio*: NOS Studio Maven repository. Use account username and an [application token](https://doc.nuxeo.com/studio/token-management/) as password.
+> ```xml
+> <server>
+>   <id>nuxeo-studio</id>
+>   <username>username</username>
+>   <password>{mXjWZLPWowewfa+aZIYrewfds+fsdfq6bRNYVLMn53iqO5cw5xEewqrFUrewr/Szpf}</password>
+> </server>
+> ```
+> Can be automatically set using `nuxeo studio link` command from [Nuxeo CLI](https://github.com/nuxeo/nuxeo-cli).
 
 ```bash
 mvn clean install

@@ -1,9 +1,0 @@
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Manifest-Version: 1.0
-Bundle-Vendor: com.customer.sample
-Bundle-Version: 1.0.0
-Bundle-Name: nuxeo-customer-project-sample-web
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: com.customer.sample.nuxeo-customer-project-sample-web;singleton=true
-Nuxeo-Component: OSGI-INF/sample-auth-contrib.xml
