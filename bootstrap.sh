@@ -16,5 +16,6 @@ $SCRIPT_BIN listener --package="com.customer.sample.listener" --listener_name="C
 $SCRIPT_BIN listener --package="com.customer.sample.listener" --listener_name="CustomerAsyncListener" --events="documentCreated" --async="true"
 $SCRIPT_BIN enricher --package="com.customer.sample.enricher" --enricher_name="CustomerEnricher" --entity_type="org.nuxeo.ecm.core.api.DocumentModel"
 $SCRIPT_BIN service --package="com.customer.sample.service" --service_name="SampleService"
-$SCRIPT_BIN polymer --name="sample" --route="sample"
+# NXP-29691: Disable web module for now
+#$SCRIPT_BIN polymer --name="sample" --route="sample"
 $SCRIPT_BIN package --name="custom-package" --company="Customer Company"
