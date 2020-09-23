@@ -19,14 +19,14 @@ build:
         buildContext:
           localDir: { }
         buildArgs:
-          BASE_IMAGE: ${DOCKER_REGISTRY}/${ORG}/nuxeo:${NUXEO_IMAGE_VERSION}
+          BASE_IMAGE: "{{.NUXEO_DOCKER_REGISTRY}}/nuxeo/nuxeo:{{.NUXEO_IMAGE_VERSION}}"
           BUILD_TAG: "{{.BUILD_TAG}}"
           SCM_REF: "{{.SCM_REF}}"
           VERSION: "{{.VERSION}}"
           CLID: "{{.CLID}}"
           PACKAGES: "jenkins_pub-SANDBOX"
         cache:
-          repo: ${DOCKER_REGISTRY}/${ORG}/nuxeo-customer-project-sample/cache
+          repo: "${DOCKER_REGISTRY}/${ORG}/nuxeo-customer-project-sample/cache"
   cluster:
     namespace: platform
     dockerConfig:
