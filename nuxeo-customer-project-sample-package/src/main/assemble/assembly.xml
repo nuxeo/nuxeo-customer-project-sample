@@ -3,12 +3,10 @@
   <taskdef resource="org/nuxeo/build/artifact/antlib.xml" uri="urn:nuxeo-artifact" />
   <taskdef resource="net/sf/antcontrib/antlib.xml" />
 
-  <target name="build" description="Build Nuxeo Package">
+  <target name="build" description="Build ${maven.project.name}">
     <property name="outdir" value="${maven.project.build.directory}" />
     <!-- Include your artifacts in the graph adding your groupId to groupPrefixes -->
     <artifact:nuxeo-expand includeTestScope="true" groupPrefixes="org.nuxeo,com.customer.sample" />
-    <artifact:print output="${outdir}/custom-package-artifacts.properties" mode="sdk" />
-    <artifact:print output="${outdir}/custom-package-test-artifacts.properties" mode="sdk" scopes="test" />
     <!-- Prints the graph for debugging purpose -->
     <artifact:print output="${outdir}/dependency-tree.log" />
     <tstamp />
@@ -22,10 +20,10 @@
       <filterset>
         <filter token="VERSION" value="${maven.project.version}" />
         <filter token="DISTRIB_VERSION" value="${nuxeo.platform.version}" />
+        <filter token="NUXEO_TARGET_VERSION" value="${nuxeo.target.version}" />
+        <filter token="STUDIO_PROJECT_VERSION" value="${studio.project.version}" />
       </filterset>
     </copy>
-    <copy file="${outdir}/custom-package-artifacts.properties" todir="${outdir}/marketplace/install" />
-    <copy file="${outdir}/custom-package-test-artifacts.properties" todir="${outdir}/marketplace/install" />
 
     <!-- Base distribution NXR -->
     <copy todir="${outdir}">
@@ -48,6 +46,7 @@
           <artifact scope="provided" />
           <artifact type="pom" />
           <artifact groupId="org.nuxeo.lib*" />
+          <artifact groupId="org.nuxeo.build*" />
         </excludes>
       </artifact:set>
     </copy>
@@ -57,6 +56,7 @@
         <includes>
           <artifact groupId="!org.nuxeo*" />
           <artifact groupId="org.nuxeo.lib*" />
+          <artifact groupId="org.nuxeo.build*" />
         </includes>
         <excludes>
           <artifact scope="test" />
@@ -79,7 +79,7 @@
             includesfile="${outdir}/includes"
             excludesfile="${outdir}/excludesfile"
             patternsetid="nxr.versus.distribution"
-            ignoreContent="false"
+            ignoreContent="true"
             ignoreContentPattern=".*\.jar$"></nx:zipdiff>
     <unzip src="${outdir}/nxr-${maven.project.version}.zip" dest="${outdir}/marketplace/install">
       <patternset refid="nxr.versus.distribution" />
@@ -106,14 +106,6 @@
       </then>
     </if>
 
-    <var
-            name="install.properties"
-            value="${line.separator}
-  &lt;copy file=&quot;${package.root}/install/custom-package-artifacts.properties&quot;${line.separator}
-    todir=&quot;${env.server.home}/sdk&quot; overwrite=&quot;true&quot; /&gt;${line.separator}
-  &lt;copy file=&quot;${package.root}/install/custom-package-test-artifacts.properties&quot;${line.separator}
-    todir=&quot;${env.server.home}/sdk&quot; overwrite=&quot;true&quot; /&gt;" />
-
     <var name="install.templates" value="" />
     <if>
       <available file="${outdir}/marketplace/install/templates" />
@@ -130,7 +122,6 @@
       <filterset>
         <filter token="BUNDLES" value="${install.bundles}" />
         <filter token="LIBS" value="${install.libs}" />
-        <filter token="PROPERTIES" value="${install.properties}" />
         <filter token="TEMPLATES" value="${install.templates}" />
       </filterset>
     </copy>
@@ -143,6 +134,12 @@
     <zip destfile="${outdir}/${maven.project.artifactId}-${maven.project.version}.zip"
          basedir="${outdir}/marketplace" />
     <artifact:attach file="${outdir}/${maven.project.artifactId}-${maven.project.version}.zip" type="zip" />
+
+    <!-- cleanups -->
+    <delete dir="${outdir}/package" failonerror="false" />
+    <delete dir="${outdir}/nxr" failonerror="false" />
+    <delete file="${outdir}/nuxeo-nxr-server-${maven.project.version}.zip" failonerror="false" />
+    <delete file="${outdir}/nxr-${maven.project.version}.zip" failonerror="false" />
   </target>
 
 </project>

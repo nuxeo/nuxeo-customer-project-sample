@@ -17,14 +17,14 @@ build:
       kaniko:
         dockerfile: Dockerfile
         buildContext:
-          localDir: {}
+          localDir: { }
         buildArgs:
           BASE_IMAGE: ${DOCKER_REGISTRY}/${ORG}/nuxeo:${NUXEO_IMAGE_VERSION}
           BUILD_TAG: "{{.BUILD_TAG}}"
           SCM_REF: "{{.SCM_REF}}"
           VERSION: "{{.VERSION}}"
           CLID: "{{.CLID}}"
-          PACKAGES: "nuxeo-web-ui"
+          PACKAGES: "jenkins_pub-SANDBOX"
         cache:
           repo: ${DOCKER_REGISTRY}/${ORG}/nuxeo-customer-project-sample-docker/cache
   cluster:
