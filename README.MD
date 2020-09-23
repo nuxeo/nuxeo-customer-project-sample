@@ -6,33 +6,35 @@ This plugin aim to show how to build and structure a common customer project. It
 
 It decribes a simple project, with several modules:
 
-```
+```text
 .
+├── docker: Docker Parent Module
+│   └── nuxeo-customer-project-sample-docker: Docker Image Module
 ├── nuxeo-customer-project-sample-core: Core Module
+│   ├── nashorn_code_cache
+│   │   └── HPgSpJxs_u615DWZjpnU-KW7AyQ_opt
 │   └── src
 │       ├── main
+│       │   ├── java
+│       │   └── resources
 │       └── test
-├── nuxeo-customer-project-sample-package: Nuxeo Package
-│   └── src
-│       └── main
-└── nuxeo-customer-project-sample-web: Webapp Module (Polymer based)
-    ├── images
-    │   └── manifest
-    ├── nuxeo
-    │   ├── META-INF
-    │   └── OSGI-INF
-    ├── src
-    └── test
+│           ├── java
+│           └── resources
+└── nuxeo-customer-project-sample-package: NOS Marketplace Package
+    └── src
+        └── main
+            ├── assemble
+            └── resources
 ```
 
 ### Core Module
 
-A Core Module usually contains new Java based new features not supported by [Nuxeo Studio](https://doc.nuxeo.com/studio/nuxeo-studio/#page-title). You will find custom [Automation Operation](https://doc.nuxeo.com/nxdoc/content-automation-concepts/#operation), [Listeners](https://doc.nuxeo.com/nxdoc/events-and-listeners/#page-title), ...
+A Core Module usually contains Java based development. Usually, you will find custom [Automation Operation](https://doc.nuxeo.com/nxdoc/content-automation-concepts/#operation), [Listeners](https://doc.nuxeo.com/nxdoc/events-and-listeners/#page-title), ...
 
 Look at the [Nuxeo CLI](https://doc.nuxeo.com/nxdoc/nuxeo-cli/#page-title) documentation to discover what you can easily generate.
 Full documentation about [Nuxeo Bundle](https://doc.nuxeo.com/nxdoc/runtime-and-component-model/).
 
-### WebApp Module - NXP-29691 Temporary Removed
+### WebApp Module - NXP-29691 Temporarily Removed
 
 A WebApp Module usually contains your Polymer Web Application as a standalone project to let you develop it as any other webapp.
 
@@ -49,7 +51,8 @@ Full documentation about [Nuxeo Package](https://doc.nuxeo.com/nxdoc/creating-nu
 > **Required Configuration**:
 > Maven Repositories:
 >
-> *maven-internal*: Credentials Required, available on [https://package.nuxeo.com]()
+> *maven-internal*: Credentials Required, available on [packages.nuxeo.com](https://packages.nuxeo.com)
+>
 > ```xml
 > <server>
 >   <id>maven-internal</id>
@@ -57,8 +60,9 @@ Full documentation about [Nuxeo Package](https://doc.nuxeo.com/nxdoc/creating-nu
 >   <password>{9iw/tVNC+AgHtewewqeqidsa/3nWQFgKfeweqzGWpAyHIAuCull3IrrMOT8V112368sgw=}</password>
 > </server>
 > ```
-> 
+>
 > *nuxeo-studio*: NOS Studio Maven repository. Use account username and an [application token](https://doc.nuxeo.com/studio/token-management/) as password.
+>
 > ```xml
 > <server>
 >   <id>nuxeo-studio</id>
@@ -66,6 +70,7 @@ Full documentation about [Nuxeo Package](https://doc.nuxeo.com/nxdoc/creating-nu
 >   <password>{mXjWZLPWowewfa+aZIYrewfds+fsdfq6bRNYVLMn53iqO5cw5xEewqrFUrewr/Szpf}</password>
 > </server>
 > ```
+>
 > Can be automatically set using `nuxeo studio link` command from [Nuxeo CLI](https://github.com/nuxeo/nuxeo-cli).
 
 ```bash
@@ -90,7 +95,7 @@ $NUXEO_HOME/bin/nuxeoctl mp-install nuxeo-customer-project-sample/nuxeo-customer
 
 ### Reporting issues
 
-[jira.nuxeo.com/browse/NXP/component/14503/](https://jira.nuxeo.com/browse/NXP/component/14503/)
+[jira.nuxeo.com/browse/NXP](https://jira.nuxeo.com/browse/NXP)
 
 ## Licensing
 

@@ -1,12 +1,14 @@
-nuxeo/nuxeo-explorer Docker Image
-===================================
+nuxeo/nuxeo-customer-project-sample Docker Image
+================================================
 
-This module is responsible to build the Explorer Docker image.
+This module is responsible for building the customer project's Docker image.
 
 **Requirements:**
+
 - `NUXEO_CLID` environment variable contains `instance.clid` content while replacing `\n` carret return by `--`.
 
 Locally, the image can be built with Maven:
+
 ```bash
 # Using GNU sed
 NUXEO_CLID=$(cat /my-env/instance.clid | sed -z 's/\n/--/g') mvn clean install

@@ -16,17 +16,17 @@
   <production-state>testing</production-state>
   <supported>false</supported>
   <platforms>
-    <platform>server-@DISTRIB_VERSION@</platform>
-    <platform>server-@DISTRIB_VERSION@-HF*</platform>
+    <platform>server-@NUXEO_TARGET_VERSION@</platform>
   </platforms>
   <!-- Dependencies on other packages -->
-  <!-- <dependencies> -->
+   <dependencies>
+     <package>jenkins_pub-SANDBOX:@STUDIO_PROJECT_VERSION@:@STUDIO_PROJECT_VERSION@</package>
   <!-- <package>another-package:1.0.0:1.0.0</package> -->
   <!-- If you require JSF UI package:  -->
   <!-- <package>nuxeo-jsf-ui</package> -->
   <!-- If you require WEB UI package:  -->
   <!-- <package>nuxeo-web-ui</package> -->
-  <!-- </dependencies> -->
+   </dependencies>
   <!-- Conflicts with other packages -->
   <!-- <conflicts> -->
   <!-- <package>a-conflicting-package:1.0.0:1.0.0</package> -->

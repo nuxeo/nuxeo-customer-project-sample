@@ -9,10 +9,12 @@ ARG BUILD_TAG
 ARG CLID
 ARG PACKAGES
 
-LABEL org.nuxeo.explorer.version=${VERSION}
-LABEL org.nuxeo.explorer.scm-ref=${SCM_REF}
-LABEL org.nuxeo.explorer.build-tag=${BUILD_TAG}
+LABEL com.customer.sample.version=${VERSION}
+LABEL com.customer.sample.scm-ref=${SCM_REF}
+LABEL com.customer.sample.build-tag=${BUILD_TAG}
 
+# Work around missing support for --chown flag with COPY instruction in Kaniko
+# TODO NXP-28052: remove and use COPY --chown when fixed in Kaniko, or find a proper way
 COPY --chown=900:0 target/nuxeo-customer-project-sample-package-*.zip /local-packages/nuxeo-customer-project-sample-package.zip
 # Workaround of above permission issues, otherwise we can't clean the package once installed
 USER root
