@@ -1,0 +1,34 @@
+# (C) Copyright 2019-2020 Nuxeo (http://nuxeo.com/) and others.
+#
+# Contributors:
+#     Kevin Leturc <kleturc@nuxeo.com>
+#     Anahide Tchertchian
+#     Arnaud Kervern
+#
+apiVersion: skaffold/v1beta11
+kind: Config
+build:
+  tagPolicy:
+    envTemplate:
+      template: "{{.DOCKER_REGISTRY}}/{{.ORG}}/{{.IMAGE_NAME}}:{{.VERSION}}"
+  artifacts:
+    - image: nuxeo-customer-project-sample-docker
+      context: docker/nuxeo-customer-project-sample-docker
+      kaniko:
+        dockerfile: Dockerfile
+        buildContext:
+          localDir: {}
+        buildArgs:
+          BASE_IMAGE: ${DOCKER_REGISTRY}/${ORG}/nuxeo:${NUXEO_IMAGE_VERSION}
+          BUILD_TAG: "{{.BUILD_TAG}}"
+          SCM_REF: "{{.SCM_REF}}"
+          VERSION: "{{.VERSION}}"
+          CLID: "{{.CLID}}"
+          PACKAGES: "nuxeo-web-ui"
+        cache:
+          repo: ${DOCKER_REGISTRY}/${ORG}/nuxeo-customer-project-sample-docker/cache
+  cluster:
+    namespace: platform
+    dockerConfig:
+      secretName: jenkins-docker-cfg
+
