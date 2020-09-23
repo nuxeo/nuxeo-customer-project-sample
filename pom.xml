@@ -22,6 +22,7 @@
   <modules>
     <module>nuxeo-customer-project-sample-core</module>
     <module>nuxeo-customer-project-sample-package</module>
+    <module>docker</module>
   </modules>
   <scm />
   <licenses />
