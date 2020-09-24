@@ -11,7 +11,7 @@ Locally, the image can be built with Maven:
 
 ```bash
 # Using GNU sed
-NUXEO_CLID=$(cat /my-env/instance.clid | sed -z 's/\n/--/g') mvn clean install
+NUXEO_CLID=$(cat /my-env/instance.clid | sed ':a;N;$!ba;s/\n/--/g') mvn clean install
 
 # Portable Version
 NUXEO_CLID=$(cat /my-env/instance.clid | sed -e ':a' -e 'N;$!ba' -e 's/\n/--/') mvn clean install
