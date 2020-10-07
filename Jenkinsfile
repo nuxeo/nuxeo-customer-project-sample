@@ -289,7 +289,7 @@ pipeline {
               boolean nsExists = sh(returnStatus: true, script: "kubectl get namespace ${PREVIEW_NAMESPACE}") == 0
               if (nsExists) {
                 // previous preview deployment needs to be scaled to 0 to be replaced correctly
-                sh "kubectl --namespace ${PREVIEW_NAMESPACE} scale deployment nuxeo-customer-sample-preview --replicas=0"
+                sh "kubectl --namespace ${PREVIEW_NAMESPACE} scale deployment nuxeo-preview --replicas=0"
               } else {
                 sh "kubectl create namespace ${PREVIEW_NAMESPACE}"
               }
@@ -305,7 +305,7 @@ pipeline {
                 mkdir target && helm template . --output-dir target
                 jx step helm install --namespace ${PREVIEW_NAMESPACE} --name ${PREVIEW_NAMESPACE} --verbose .
               """
-              url = sh(returnStdout: true, script: "kubectl get svc --namespace ${PREVIEW_NAMESPACE} nuxeo-customer-sample-preview -o go-template='{{index .metadata.annotations \"fabric8.io/exposeUrl\"}}'")
+              url = sh(returnStdout: true, script: "kubectl get svc --namespace ${PREVIEW_NAMESPACE} nuxeo-preview -o go-template='{{index .metadata.annotations \"fabric8.io/exposeUrl\"}}'")
               echo """
                 ----------------------------------------
                 Preview available at: ${url}
