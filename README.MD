@@ -1,10 +1,12 @@
-[![Jenkins](https://img.shields.io/jenkins/s/https/qa.nuxeo.org/jenkins/job/master/job/plugins_nuxeo-customer-project-sample-master/.svg?style=flat-square)](https://qa.nuxeo.org/jenkins/job/master/job/plugins_nuxeo-customer-project-sample-master/)
+# Nuxeo customer Project Sample
 
-This plugin aim to show how to build and structure a common customer project. It is continuously built from [Nuxeo CLI](https://doc.nuxeo.com/nxdoc/nuxeo-cli/) using the `bootstrap.sh` script.
+[![Build Status](https://jenkins.platform.dev.nuxeo.com/buildStatus/icon?job=nuxeo/nuxeo-customer-project-sample/master)](https://jenkins.platform.dev.nuxeo.com/job/nuxeo/job/nuxeo-customer-project-sample/job/master/)
+
+This plugin aims to show how to build and structure a common customer project. It is continuously built from [Nuxeo CLI](https://doc.nuxeo.com/nxdoc/next/nuxeo-cli/) using the `bootstrap.sh` script.
 
 ## Structure
 
-It decribes a simple project, with several modules:
+It describes a simple project, with several modules:
 
 ```text
 .
@@ -29,29 +31,28 @@ It decribes a simple project, with several modules:
 
 ### Core Module
 
-A Core Module usually contains Java based development. Usually, you will find custom [Automation Operation](https://doc.nuxeo.com/nxdoc/content-automation-concepts/#operation), [Listeners](https://doc.nuxeo.com/nxdoc/events-and-listeners/#page-title), ...
+A Core Module usually contains Java based development. Usually, you will find custom [Automation Operation](https://doc.nuxeo.com/nxdoc/next/content-automation-concepts/#operation), [Listeners](https://doc.nuxeo.com/nxdoc/next/events-and-messages/), ...
 
-Look at the [Nuxeo CLI](https://doc.nuxeo.com/nxdoc/nuxeo-cli/#page-title) documentation to discover what you can easily generate.
-Full documentation about [Nuxeo Bundle](https://doc.nuxeo.com/nxdoc/runtime-and-component-model/).
+Look at the [Nuxeo CLI](https://doc.nuxeo.com/nxdoc/next/nuxeo-cli/) documentation to discover what you can easily generate.
+Full documentation about [Nuxeo Bundle](https://doc.nuxeo.com/nxdoc/next/runtime-and-component-model/).
 
 ### WebApp Module - NXP-29691 Temporarily Removed
 
 A WebApp Module usually contains your Polymer Web Application as a standalone project to let you develop it as any other webapp.
 
-Discover [Polymer Guide](https://doc.nuxeo.com/nxdoc/polymer-guide/#page-title) to help you starting a new project.
+Discover [Polymer Guide](https://doc.nuxeo.com/nxdoc/next/polymer-guide/) to help you starting a new project.
 
 ### Nuxeo Package
 
 A Nuxeo Package usually contains installation instructions and optional constraints towards other packages (dependency, conflict). It is the easiest way to distribute a customer plugin, as it contains in one single ZIP file all the bundles, libraries, configuration properties and templates that are required to make the plugin work.
 
-Full documentation about [Nuxeo Package](https://doc.nuxeo.com/nxdoc/creating-nuxeo-packages/).
+Full documentation about [Nuxeo Package](https://doc.nuxeo.com/nxdoc/next/creating-nuxeo-packages/).
 
 ## Building
 
-> **Required Configuration**:
-> Maven Repositories:
+> **Required Configuration** - Maven Repositories:
 >
-> *maven-internal*: Credentials Required, available on [packages.nuxeo.com](https://packages.nuxeo.com)
+> *maven-internal*: credentials required, available on [packages.nuxeo.com](https://packages.nuxeo.com)
 >
 > ```xml
 > <server>
@@ -71,7 +72,7 @@ Full documentation about [Nuxeo Package](https://doc.nuxeo.com/nxdoc/creating-nu
 > </server>
 > ```
 >
-> Can be automatically set using `nuxeo studio link` command from [Nuxeo CLI](https://github.com/nuxeo/nuxeo-cli).
+> Can be automatically set using the `nuxeo studio link` command from [Nuxeo CLI](https://github.com/nuxeo/nuxeo-cli).
 
 ```bash
 mvn clean install
@@ -79,7 +80,7 @@ mvn clean install
 
 ### Requirements
 
-See [CORG/Compiling Nuxeo from sources](http://doc.nuxeo.com/x/xION)
+See [Compiling Nuxeo from sources](http://doc.nuxeo.com/x/xION)
 
 ### Deploying
 
@@ -91,11 +92,11 @@ $NUXEO_HOME/bin/nuxeoctl mp-install nuxeo-customer-project-sample/nuxeo-customer
 
 ### Nuxeo CLI
 
-[www.npmjs.com/package/nuxeo-cli](https://www.npmjs.com/package/nuxeo-cli)
+[nuxeo-cli](https://www.npmjs.com/package/nuxeo-cli) npm package
 
 ### Reporting issues
 
-[jira.nuxeo.com/browse/NXP](https://jira.nuxeo.com/browse/NXP)
+[JIRA bug tracker](https://jira.nuxeo.com/browse/NXP/)
 
 ## Licensing
 
