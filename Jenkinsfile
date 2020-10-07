@@ -263,6 +263,66 @@ pipeline {
         unsuccessful {
           setGitHubBuildStatus('docker/deploy', 'Deploy Docker image', 'FAILURE')
         }
+      }
+    }
+    stage('Deploy Preview') {
+      when {
+        branch 'PR-*'
+      }
+      steps {
+        setGitHubBuildStatus('preview', 'Deploy preview', 'PENDING')
+        container('maven') {
+          echo """
+          ----------------------------------------
+          Deploy preview environment
+          ----------------------------------------"""
+          dir('helm/preview') {
+
+            script {
+              // first substitute docker image names and versions
+              sh """
+                mv values.yaml values.yaml.tosubst
+                envsubst < values.yaml.tosubst > values.yaml
+              """
+
+              // second scale target namespace if exists and copy secrets to target namespace
+              boolean nsExists = sh(returnStatus: true, script: "kubectl get namespace ${PREVIEW_NAMESPACE}") == 0
+              if (nsExists) {
+                // previous preview deployment needs to be scaled to 0 to be replaced correctly
+                sh "kubectl --namespace ${PREVIEW_NAMESPACE} scale deployment nuxeo-customer-sample-preview --replicas=0"
+              } else {
+                sh "kubectl create namespace ${PREVIEW_NAMESPACE}"
+              }
+              sh "kubectl --namespace platform get secret kubernetes-docker-cfg -ojsonpath='{.data.\\.dockerconfigjson}' | base64 --decode > /tmp/config.json"
+              sh """kubectl create secret generic kubernetes-docker-cfg \
+                  --namespace=${PREVIEW_NAMESPACE} \
+                  --from-file=.dockerconfigjson=/tmp/config.json \
+                  --type=kubernetes.io/dockerconfigjson --dry-run -o yaml | kubectl apply -f -"""
+
+              // third build and deploy the chart
+              sh """
+                jx step helm build --verbose
+                mkdir target && helm template . --output-dir target
+                jx step helm install --namespace ${PREVIEW_NAMESPACE} --name ${PREVIEW_NAMESPACE} --verbose .
+              """
+              url = sh(returnStdout: true, script: "kubectl get svc --namespace ${PREVIEW_NAMESPACE} nuxeo-customer-sample-preview -o go-template='{{index .metadata.annotations \"fabric8.io/exposeUrl\"}}'")
+              echo """
+                ----------------------------------------
+                Preview available at: ${url}
+                ----------------------------------------"""
+            }
+          }
+        }
+      }
+      post {
+        always {
+          archiveArtifacts allowEmptyArchive: true, artifacts: '**/requirements.lock, **/charts/*.tgz, **/target/**/*.yaml'
+        }
+        success {
+          setGitHubBuildStatus('preview', 'Deploy preview', 'SUCCESS')
+        }
+        unsuccessful {
+          setGitHubBuildStatus('preview', 'Deploy preview', 'FAILURE')
         }
       }
     }
