@@ -19,7 +19,7 @@ cleanup:
     helm.sh/hook-delete-policy: hook-succeeded
 
 nuxeo:
-  fullnameOverride: nuxeo-preview
+  fullnameOverride: preview
   nuxeo:
     podLabels:
       branch: "$BRANCH_NAME"

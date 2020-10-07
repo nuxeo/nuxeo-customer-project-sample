@@ -84,14 +84,15 @@ pipeline {
     )
   }
   environment {
+    APP_NAME = 'nuxeo-customer-project-sample'
     MAVEN_OPTS = "$MAVEN_OPTS -Xms2g -Xmx2g  -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
     MAVEN_ARGS = '-B -nsu -Dnuxeo.skip.enforcer=true'
     REFERENCE_BRANCH = 'master'
     SCM_REF = "${getCommitSha1()}"
     VERSION = "${getVersion(REFERENCE_BRANCH)}"
     NUXEO_DOCKER_REGISTRY = 'docker-private.packages.nuxeo.com'
-    DOCKER_IMAGE_NAME = 'nuxeo-customer-project-sample'
-    PREVIEW_NAMESPACE = "${DOCKER_IMAGE_NAME}-${BRANCH_NAME.toLowerCase()}"
+    DOCKER_IMAGE_NAME = "${APP_NAME}"
+    PREVIEW_NAMESPACE = "${APP_NAME}-${BRANCH_NAME.toLowerCase()}"
     ORG = 'nuxeo'
   }
   stages {
@@ -289,7 +290,7 @@ pipeline {
               boolean nsExists = sh(returnStatus: true, script: "kubectl get namespace ${PREVIEW_NAMESPACE}") == 0
               if (nsExists) {
                 // previous preview deployment needs to be scaled to 0 to be replaced correctly
-                sh "kubectl --namespace ${PREVIEW_NAMESPACE} scale deployment nuxeo-preview --replicas=0"
+                sh "kubectl --namespace ${PREVIEW_NAMESPACE} scale deployment preview --replicas=0"
               } else {
                 sh "kubectl create namespace ${PREVIEW_NAMESPACE}"
               }
@@ -300,16 +301,13 @@ pipeline {
                   --type=kubernetes.io/dockerconfigjson --dry-run -o yaml | kubectl apply -f -"""
 
               // third build and deploy the chart
+              // we use jx preview that gc the merged pull requests
               sh """
                 jx step helm build --verbose
                 mkdir target && helm template . --output-dir target
-                jx step helm install --namespace ${PREVIEW_NAMESPACE} --name ${PREVIEW_NAMESPACE} --verbose .
+                cp values.yaml target/
+                jx preview --namespace ${PREVIEW_NAMESPACE} --verbose --source-url=https://github.com/nuxeo/nuxeo-customer-project-sample --preview-health-timeout 15m
               """
-              url = sh(returnStdout: true, script: "kubectl get svc --namespace ${PREVIEW_NAMESPACE} nuxeo-preview -o go-template='{{index .metadata.annotations \"fabric8.io/exposeUrl\"}}'")
-              echo """
-                ----------------------------------------
-                Preview available at: ${url}
-                ----------------------------------------"""
             }
           }
         }
