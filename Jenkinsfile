@@ -136,11 +136,11 @@ pipeline {
     }
     stage('Run Unit Tests') {
       steps {
-        setGitHubBuildStatus('utests', 'Run Unit Tests', 'PENDING')
+        setGitHubBuildStatus('utests', 'Run unit tests', 'PENDING')
         container('maven') {
           echo """
           ----------------------------------------
-          Run Unit Tests
+          Run unit tests
           ----------------------------------------"""
           echo "MAVEN_OPTS=$MAVEN_OPTS"
           sh "mvn  ${MAVEN_ARGS} test"
@@ -152,10 +152,10 @@ pipeline {
           junit testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true
         }
         success {
-          setGitHubBuildStatus('utests', 'Run Unit Tests', 'SUCCESS')
+          setGitHubBuildStatus('utests', 'Run unit tests', 'SUCCESS')
         }
         unsuccessful {
-          setGitHubBuildStatus('utests', 'Run Unit Tests', 'FAILURE')
+          setGitHubBuildStatus('utests', 'Run unit tests', 'FAILURE')
         }
       }
     }
@@ -167,7 +167,7 @@ pipeline {
         }
       }
       steps {
-        setGitHubBuildStatus('docker/build', 'Build Docker Image', 'PENDING')
+        setGitHubBuildStatus('docker/build', 'Build Docker image', 'PENDING')
         container('maven') {
           echo """
           ------------------------------------------
@@ -199,10 +199,10 @@ pipeline {
       }
       post {
         success {
-          setGitHubBuildStatus('docker/build', 'Build Docker Image', 'SUCCESS')
+          setGitHubBuildStatus('docker/build', 'Build Docker image', 'SUCCESS')
         }
         unsuccessful {
-          setGitHubBuildStatus('docker/build', 'Build Docker Image', 'FAILURE')
+          setGitHubBuildStatus('docker/build', 'Build Docker image', 'FAILURE')
         }
       }
     }
@@ -244,7 +244,7 @@ pipeline {
         }
       }
       steps {
-        setGitHubBuildStatus('docker/deploy', 'Deploy Docker Image', 'PENDING')
+        setGitHubBuildStatus('docker/deploy', 'Deploy Docker image', 'PENDING')
         container('maven') {
           echo """
           ----------------------------------------
@@ -258,10 +258,11 @@ pipeline {
       }
       post {
         success {
-          setGitHubBuildStatus('docker/deploy', 'Deploy Docker Image', 'SUCCESS')
+          setGitHubBuildStatus('docker/deploy', 'Deploy Docker image', 'SUCCESS')
         }
         unsuccessful {
-          setGitHubBuildStatus('docker/deploy', 'Deploy Docker Image', 'FAILURE')
+          setGitHubBuildStatus('docker/deploy', 'Deploy Docker image', 'FAILURE')
+        }
         }
       }
     }
