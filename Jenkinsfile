@@ -125,7 +125,7 @@ pipeline {
       }
       post {
         always {
-          archiveArtifacts artifacts: '**/target/*.jar, **/target/nuxeo-*-package-*.zip', excludes: 'docker/nuxeo-customer-project-sample-docker/target/*'
+          archiveArtifacts artifacts: '**/target/*.jar, **/target/nuxeo-*-package-*.zip', excludes: 'nuxeo-customer-project-sample-docker/target/*'
         }
         success {
           setGitHubBuildStatus('compile', 'Compile', 'SUCCESS')
@@ -181,7 +181,7 @@ pipeline {
             withCredentials([string(credentialsId: 'instance-clid', variable: 'INSTANCE_CLID')]) {
               script {
                 // build and push Docker image to the Jenkins X internal Docker registry
-                def dockerPath = 'docker/nuxeo-customer-project-sample-docker'
+                def dockerPath = 'nuxeo-customer-project-sample-docker'
                 sh "envsubst < ${dockerPath}/skaffold.yaml > ${dockerPath}/skaffold.yaml~gen"
                 sh """#!/bin/bash +x
                   CLID=\$(echo -e "${INSTANCE_CLID}" | sed ':a;N;\$!ba;s/\\n/--/g') skaffold build -f ${dockerPath}/skaffold.yaml~gen

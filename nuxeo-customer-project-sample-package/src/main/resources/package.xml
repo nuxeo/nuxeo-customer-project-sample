@@ -19,14 +19,13 @@
     <platform>server-@NUXEO_TARGET_VERSION@</platform>
   </platforms>
   <!-- Dependencies on other packages -->
-   <dependencies>
-     <package>jenkins_pub-SANDBOX:@STUDIO_PROJECT_VERSION@:@STUDIO_PROJECT_VERSION@</package>
+  <!-- <dependencies> -->
   <!-- <package>another-package:1.0.0:1.0.0</package> -->
   <!-- If you require JSF UI package:  -->
   <!-- <package>nuxeo-jsf-ui</package> -->
   <!-- If you require WEB UI package:  -->
   <!-- <package>nuxeo-web-ui</package> -->
-   </dependencies>
+  <!-- </dependencies> -->
   <!-- Conflicts with other packages -->
   <!-- <conflicts> -->
   <!-- <package>a-conflicting-package:1.0.0:1.0.0</package> -->
@@ -35,8 +34,11 @@
   <!-- <provides> -->
   <!-- <package>an-embedded-package:1.0.0:1.0.0</package> -->
   <!-- </provides> -->
-  <license></license>
-  <license-url></license-url>
+  <license />
+  <license-url />
   <!-- Visibility: PRIVATE | MARKETPLACE | DEV | PUBLIC -->
   <visibility>DEV</visibility>
+  <dependencies>
+    <dependency>jenkins_pub-SANDBOX:@STUDIO_PROJECT_VERSION@:@STUDIO_PROJECT_VERSION@</dependency>
+  </dependencies>
 </package>
