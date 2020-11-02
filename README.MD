@@ -50,18 +50,8 @@ Full documentation about [Nuxeo Package](https://doc.nuxeo.com/nxdoc/next/creati
 
 ## Building
 
-> **Required Configuration** - Maven Repositories:
->
-> *maven-internal*: credentials required, available on [packages.nuxeo.com](https://packages.nuxeo.com)
->
-> ```xml
-> <server>
->   <id>maven-internal</id>
->   <username>username</username>
->   <password>{9iw/tVNC+AgHtewewqeqidsa/3nWQFgKfeweqzGWpAyHIAuCull3IrrMOT8V112368sgw=}</password>
-> </server>
-> ```
->
+> **Required Configuration** - Maven Repository:
+>>
 > *nuxeo-studio*: NOS Studio Maven repository. Use account username and an [application token](https://doc.nuxeo.com/studio/token-management/) as password.
 >
 > ```xml
