@@ -90,7 +90,7 @@ pipeline {
     REFERENCE_BRANCH = 'master'
     SCM_REF = "${getCommitSha1()}"
     VERSION = "${getVersion(REFERENCE_BRANCH)}"
-    NUXEO_DOCKER_REGISTRY = 'docker-private.packages.nuxeo.com'
+    NUXEO_DOCKER_REGISTRY = 'docker.packages.nuxeo.com'
     DOCKER_IMAGE_NAME = "${APP_NAME}"
     PREVIEW_NAMESPACE = "${APP_NAME}-${BRANCH_NAME.toLowerCase()}"
     ORG = 'nuxeo'
