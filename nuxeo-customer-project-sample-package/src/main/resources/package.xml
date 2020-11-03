@@ -39,6 +39,6 @@
   <!-- Visibility: PRIVATE | MARKETPLACE | DEV | PUBLIC -->
   <visibility>DEV</visibility>
   <dependencies>
-    <dependency>jenkins_pub-SANDBOX:@STUDIO_PROJECT_VERSION@:@STUDIO_PROJECT_VERSION@</dependency>
+    <package>jenkins_pub-SANDBOX:@STUDIO_PROJECT_VERSION@:@STUDIO_PROJECT_VERSION@</package>
   </dependencies>
 </package>
