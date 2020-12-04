@@ -1,8 +1,8 @@
 <!-- See documentation at http://doc.nuxeo.com/x/HgIz -->
-<package type="addon" name="custom-package" version="@VERSION@">
-  <title>Custom package</title>
+<package type="addon" name="nuxeo-sample-common-package" version="@VERSION@">
+  <title>Sample Common Package</title>
   <description>
-    <p>Put here an HTML description of your Nuxeo Package.</p>
+    <p>Sample Common Package for SUPINT-1819 Tests</p>
   </description>
   <!-- <home-page>http://doc.nuxeo.com/</home-page> -->
   <vendor>Customer Company</vendor>
@@ -38,7 +38,4 @@
   <license-url />
   <!-- Visibility: PRIVATE | MARKETPLACE | DEV | PUBLIC -->
   <visibility>DEV</visibility>
-  <dependencies>
-    <package>jenkins_pub-SANDBOX:@STUDIO_PROJECT_VERSION@:@STUDIO_PROJECT_VERSION@</package>
-  </dependencies>
 </package>
