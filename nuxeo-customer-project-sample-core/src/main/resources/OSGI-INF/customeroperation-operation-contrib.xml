@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<component name="com.customer.sample.operation.operation.customeroperation" version="1.0">
-
-  <extension point="operations" target="org.nuxeo.ecm.core.operation.OperationServiceComponent">
-    <operation class="com.customer.sample.operation.CustomerOperation"/>
-  </extension>
-
-</component>

@@ -8,9 +8,9 @@
   </parent>
 
   <groupId>com.customer.sample</groupId>
-  <artifactId>nuxeo-customer-project-sample-parent</artifactId>
+  <artifactId>nuxeo-sample-vertical-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>Nuxeo customer project sample parent</name>
+  <name>Nuxeo sample vertical project parent</name>
   <description />
   <packaging>pom</packaging>
 
@@ -18,14 +18,13 @@
     <!-- Skip Nuxeo enforcer rules by default -->
     <nuxeo.skip.enforcer>true</nuxeo.skip.enforcer>
     <nuxeo.target.version>11.*</nuxeo.target.version>
+    <studio.common.project.version>0.0.0-SNAPSHOT</studio.common.project.version>
     <studio.project.version>0.0.0-SNAPSHOT</studio.project.version>
     <skipDocker>false</skipDocker>
   </properties>
 
   <modules>
-    <module>nuxeo-customer-project-sample-core</module>
-    <module>nuxeo-customer-project-sample-package</module>
-    <module>nuxeo-customer-project-sample-docker</module>
+    <module>nuxeo-sample-vertical-package</module>
   </modules>
 
   <scm />
@@ -39,25 +38,9 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.customer.sample</groupId>
-        <artifactId>nuxeo-customer-project-sample-core</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.customer.sample</groupId>
-        <artifactId>nuxeo-customer-project-sample-package</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
         <groupId>nuxeo-studio</groupId>
-        <artifactId>jenkins_pub-SANDBOX</artifactId>
+        <artifactId>nuxeo-vertical-test</artifactId>
         <version>${studio.project.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.customer.sample</groupId>
-        <artifactId>nuxeo-customer-project-sample-docker</artifactId>
-        <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -99,15 +82,5 @@
       </snapshots>
     </pluginRepository>
   </pluginRepositories>
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>com.spotify</groupId>
-          <artifactId>dockerfile-maven-plugin</artifactId>
-          <version>1.4.13</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
+
 </project>

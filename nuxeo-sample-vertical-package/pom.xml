@@ -2,14 +2,14 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.customer.sample</groupId>
-    <artifactId>nuxeo-customer-project-sample-parent</artifactId>
+    <artifactId>nuxeo-sample-vertical-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>nuxeo-customer-project-sample-package</artifactId>
+  <artifactId>nuxeo-sample-vertical-package</artifactId>
   <packaging>zip</packaging>
-  <name>Nuxeo customer project sample package - Custom package</name>
+  <name>Nuxeo sample vertical package</name>
 
   <dependencies>
     <!-- Base distribution(s) for the MP -->
@@ -22,8 +22,8 @@
 
     <!-- Additional bundles to be deployed by the MP -->
     <dependency>
-      <groupId>com.customer.sample</groupId>
-      <artifactId>nuxeo-customer-project-sample-core</artifactId>
+      <groupId>nuxeo-studio</groupId>
+      <artifactId>nuxeo-vertical-test</artifactId>
     </dependency>
   </dependencies>
 
@@ -40,6 +40,5 @@
       </plugin>
     </plugins>
   </build>
-
 
 </project>
