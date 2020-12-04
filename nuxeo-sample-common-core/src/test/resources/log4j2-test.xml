@@ -12,7 +12,7 @@
   </Appenders>
   <Loggers>
     <Logger name="org.nuxeo" level="info" />
-    <Root level="info">
+    <Root level="warn">
       <AppenderRef ref="CONSOLE" />
       <AppenderRef ref="FILE" />
     </Root>

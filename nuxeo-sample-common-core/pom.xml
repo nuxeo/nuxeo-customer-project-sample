@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.customer.sample</groupId>
-    <artifactId>nuxeo-customer-project-sample-parent</artifactId>
+    <artifactId>nuxeo-sample-common-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>nuxeo-customer-project-sample-core</artifactId>
-  <name>Nuxeo customer project sample core</name>
+  <artifactId>nuxeo-sample-common-core</artifactId>
+  <name>Nuxeo sample common core</name>
   <description />
 
   <dependencies>
@@ -44,7 +44,7 @@
     </dependency>
     <dependency>
       <groupId>nuxeo-studio</groupId>
-      <artifactId>jenkins_pub-SANDBOX</artifactId>
+      <artifactId>nuxeo-common-test-projec</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
