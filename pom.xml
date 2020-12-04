@@ -18,7 +18,11 @@
     <!-- Skip Nuxeo enforcer rules by default -->
     <nuxeo.skip.enforcer>true</nuxeo.skip.enforcer>
     <nuxeo.target.version>11.*</nuxeo.target.version>
+    <sample.common.package.version>1.0.0</sample.common.package.version>
+    <!-- not needed if using dependency to the common package above -->
+    <!--
     <studio.common.project.version>0.0.0-SNAPSHOT</studio.common.project.version>
+    -->
     <studio.project.version>0.0.0-SNAPSHOT</studio.project.version>
     <skipDocker>false</skipDocker>
   </properties>

@@ -21,6 +21,7 @@
     </dependency>
 
     <!-- Additional bundles to be deployed by the MP -->
+    <!-- Could also be set as a package dependency if not additional jars are needed at the vertical project level -->
     <dependency>
       <groupId>nuxeo-studio</groupId>
       <artifactId>nuxeo-vertical-test</artifactId>
