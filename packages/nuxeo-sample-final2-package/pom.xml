@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.customer.sample</groupId>
+    <artifactId>nuxeo-sample-final-packages-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>nuxeo-sample-final2-package</artifactId>
+  <packaging>zip</packaging>
+  <name>Nuxeo sample package - Final 2 package (with vertical)</name>
+
+  <dependencies>
+    <!-- Additional bundles to be deployed by the MP -->
+    <dependency>
+      <groupId>com.customer.sample</groupId>
+      <artifactId>nuxeo-sample-common-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>nuxeo-studio</groupId>
+      <artifactId>nuxeo-common-test-projec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>nuxeo-studio</groupId>
+      <artifactId>nuxeo-vertical-test</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>nuxeo-studio</groupId>
+      <artifactId>nuxeo-final2-test-projec</artifactId>
+    </dependency>
+  </dependencies>
+
+</project>

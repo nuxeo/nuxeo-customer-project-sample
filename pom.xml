@@ -8,9 +8,9 @@
   </parent>
 
   <groupId>com.customer.sample</groupId>
-  <artifactId>nuxeo-customer-project-sample-parent</artifactId>
+  <artifactId>nuxeo-sample-final-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>Nuxeo customer project sample parent</name>
+  <name>Nuxeo sample final parent</name>
   <description />
   <packaging>pom</packaging>
 
@@ -18,14 +18,16 @@
     <!-- Skip Nuxeo enforcer rules by default -->
     <nuxeo.skip.enforcer>true</nuxeo.skip.enforcer>
     <nuxeo.target.version>11.*</nuxeo.target.version>
-    <studio.project.version>0.0.0-SNAPSHOT</studio.project.version>
-    <skipDocker>false</skipDocker>
+    <sample.common.core.version>1.0-SNAPSHOT</sample.common.core.version>
+    <studio.common.project.version>0.0.0-SNAPSHOT</studio.common.project.version>
+    <studio.vertical.project.version>0.0.0-SNAPSHOT</studio.vertical.project.version>
+    <studio.final1.project.version>0.0.0-SNAPSHOT</studio.final1.project.version>
+    <studio.final2.project.version>0.0.0-SNAPSHOT</studio.final2.project.version>
   </properties>
 
   <modules>
-    <module>nuxeo-customer-project-sample-core</module>
-    <module>nuxeo-customer-project-sample-package</module>
-    <module>nuxeo-customer-project-sample-docker</module>
+    <module>packages</module>
+    <module>docker</module>
   </modules>
 
   <scm />
@@ -40,23 +42,37 @@
     <dependencies>
       <dependency>
         <groupId>com.customer.sample</groupId>
-        <artifactId>nuxeo-customer-project-sample-core</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.customer.sample</groupId>
-        <artifactId>nuxeo-customer-project-sample-package</artifactId>
-        <version>${project.version}</version>
+        <artifactId>nuxeo-sample-common-core</artifactId>
+        <version>${sample.common.core.version}</version>
       </dependency>
       <dependency>
         <groupId>nuxeo-studio</groupId>
-        <artifactId>jenkins_pub-SANDBOX</artifactId>
-        <version>${studio.project.version}</version>
-        <scope>test</scope>
+        <artifactId>nuxeo-common-test-projec</artifactId>
+        <version>${studio.common.project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>nuxeo-studio</groupId>
+        <artifactId>nuxeo-vertical-test</artifactId>
+        <version>${studio.vertical.project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>nuxeo-studio</groupId>
+        <artifactId>nuxeo-final-test-project</artifactId>
+        <version>${studio.final1.project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>nuxeo-studio</groupId>
+        <artifactId>nuxeo-final2-test-projec</artifactId>
+        <version>${studio.final2.project.version}</version>
       </dependency>
       <dependency>
         <groupId>com.customer.sample</groupId>
-        <artifactId>nuxeo-customer-project-sample-docker</artifactId>
+        <artifactId>nuxeo-sample-final1-package</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.customer.sample</groupId>
+        <artifactId>nuxeo-sample-final2-package</artifactId>
         <version>${project.version}</version>
       </dependency>
     </dependencies>

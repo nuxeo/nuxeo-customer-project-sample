@@ -1,0 +1,20 @@
+<package type="addon" name="nuxeo-sample-final1-package" version="@VERSION@">
+  <title>Sample Final1 Package</title>
+  <description>
+    <p>Sample Final1 Package for SUPINT-1819 Tests</p>
+  </description>
+  <vendor>Customer Company</vendor>
+  <installer restart="true" />
+  <uninstaller restart="true" />
+  <nuxeo-validation>none</nuxeo-validation>
+  <production-state>testing</production-state>
+  <supported>false</supported>
+  <platforms>
+    <platform>server-@NUXEO_TARGET_VERSION@</platform>
+  </platforms>
+  <visibility>DEV</visibility>
+  <dependencies>
+    <package>nuxeo-common-test-projec:@STUDIO_COMMON_PROJECT_VERSION@</package>
+    <package>nuxeo-final-test-project:@STUDIO_FINAL1_PROJECT_VERSION@</package>
+  </dependencies>
+</package>

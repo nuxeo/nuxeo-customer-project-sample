@@ -1,0 +1,20 @@
+<package type="addon" name="nuxeo-sample-final2-package" version="@VERSION@">
+  <title>Sample package</title>
+  <description>
+    <p>Sample Final2 Package for SUPINT-1819 Tests</p>
+  </description>
+  <vendor>Customer Company</vendor>
+  <installer restart="true" />
+  <uninstaller restart="true" />
+  <nuxeo-validation>none</nuxeo-validation>
+  <production-state>testing</production-state>
+  <supported>false</supported>
+  <platforms>
+    <platform>server-@NUXEO_TARGET_VERSION@</platform>
+  </platforms>
+  <visibility>DEV</visibility>
+  <dependencies>
+    <!-- no dependencies except web-ui: other deps embedded in the package for this sample -->
+    <package>nuxeo-web-ui</package>
+  </dependencies>
+</package>
