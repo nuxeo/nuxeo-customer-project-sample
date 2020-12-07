@@ -9,7 +9,7 @@
 
   <groupId>com.customer.sample</groupId>
   <artifactId>nuxeo-sample-vertical-parent</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <name>Nuxeo sample vertical project parent</name>
   <description />
   <packaging>pom</packaging>
@@ -17,13 +17,13 @@
   <properties>
     <!-- Skip Nuxeo enforcer rules by default -->
     <nuxeo.skip.enforcer>true</nuxeo.skip.enforcer>
-    <nuxeo.target.version>11.*</nuxeo.target.version>
+    <nuxeo.target.version>11.4</nuxeo.target.version>
     <sample.common.package.version>1.0.0</sample.common.package.version>
     <!-- not needed if using dependency to the common package above -->
     <!--
     <studio.common.project.version>0.0.0-SNAPSHOT</studio.common.project.version>
     -->
-    <studio.project.version>0.0.0-SNAPSHOT</studio.project.version>
+    <studio.project.version>1.0.0</studio.project.version>
     <skipDocker>false</skipDocker>
   </properties>
 
