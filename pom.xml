@@ -17,12 +17,12 @@
   <properties>
     <!-- Skip Nuxeo enforcer rules by default -->
     <nuxeo.skip.enforcer>true</nuxeo.skip.enforcer>
-    <nuxeo.target.version>11.*</nuxeo.target.version>
-    <sample.common.core.version>1.0-SNAPSHOT</sample.common.core.version>
-    <studio.common.project.version>0.0.0-SNAPSHOT</studio.common.project.version>
-    <studio.vertical.project.version>0.0.0-SNAPSHOT</studio.vertical.project.version>
-    <studio.final1.project.version>0.0.0-SNAPSHOT</studio.final1.project.version>
-    <studio.final2.project.version>0.0.0-SNAPSHOT</studio.final2.project.version>
+    <nuxeo.target.version>11.4.*</nuxeo.target.version>
+    <sample.common.core.version>1.0</sample.common.core.version>
+    <studio.common.project.version>1.0.0</studio.common.project.version>
+    <studio.vertical.project.version>1.0.0</studio.vertical.project.version>
+    <studio.final1.project.version>1.0.0</studio.final1.project.version>
+    <studio.final2.project.version>1.0.0</studio.final2.project.version>
   </properties>
 
   <modules>
