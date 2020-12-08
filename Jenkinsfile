@@ -68,7 +68,7 @@ void dockerDeploy(String imageName) {
   String internalImage = "${DOCKER_REGISTRY}/${imageTag}"
   String image = "${NUXEO_DOCKER_REGISTRY}/${imageTag}"
   echo "Push ${image}"
-  dockerPull(image)
+  dockerPull(internalImage)
   dockerTag(internalImage, image)
   dockerPush(image)
 }
