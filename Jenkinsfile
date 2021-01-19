@@ -303,6 +303,8 @@ pipeline {
               // third build and deploy the chart
               // we use jx preview that gc the merged pull requests
               sh """
+                helm init --client-only --stable-repo-url=https://charts.helm.sh/stable
+                helm repo add local-jenkins-x http://jenkins-x-chartmuseum:8080
                 jx step helm build --verbose
                 mkdir target && helm template . --output-dir target
                 cp values.yaml target/
