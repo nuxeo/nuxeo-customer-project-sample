@@ -181,17 +181,17 @@ pipeline {
             withCredentials([string(credentialsId: 'instance-clid', variable: 'INSTANCE_CLID')]) {
               script {
                 // build and push Docker image to the Jenkins X internal Docker registry
-                def dockerPath = 'nuxeo-customer-project-sample-docker'
-                sh "envsubst < ${dockerPath}/skaffold.yaml > ${dockerPath}/skaffold.yaml~gen"
-                sh """#!/bin/bash +x
-                  CLID=\$(echo -e "${INSTANCE_CLID}" | sed ':a;N;\$!ba;s/\\n/--/g') skaffold build -f ${dockerPath}/skaffold.yaml~gen
-                """
+                env.DOCKER_PATH = 'nuxeo-customer-project-sample-docker'
+                sh "envsubst < ${DOCKER_PATH}/skaffold.yaml > ${DOCKER_PATH}/skaffold.yaml~gen"
+                sh '''#!/bin/bash +x
+                  CLID=\$(echo -e "${INSTANCE_CLID}" | sed ':a;N;\$!ba;s/\\n/--/g') skaffold build -f $DOCKER_PATH/skaffold.yaml~gen
+                '''
                 def image = "${DOCKER_REGISTRY}/${ORG}/${DOCKER_IMAGE_NAME}:${VERSION}"
                 sh """
                   # waiting skaffold + kaniko + container-stucture-tests issue
                   #  see https://github.com/GoogleContainerTools/skaffold/issues/3907
                   docker pull ${image}
-                  container-structure-test test --image ${image} --config ${dockerPath}/test/*
+                  container-structure-test test --image ${image} --config ${DOCKER_PATH}/test/*
                 """
               }
             }
