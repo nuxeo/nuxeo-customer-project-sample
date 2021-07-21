@@ -31,7 +31,7 @@ build:
         cache:
           repo: "${DOCKER_REGISTRY}/${ORG}/nuxeo-customer-project-sample/cache"
   cluster:
-    namespace: platform
+    namespace: $CURRENT_NAMESPACE
     dockerConfig:
       secretName: jenkins-docker-cfg
     resources:

@@ -34,6 +34,12 @@ void setGitHubBuildStatus(String context, String message, String state) {
   ])
 }
 
+String getCurrentNamespace() {
+  container('maven') {
+    return sh(returnStdout: true, script: "kubectl get pod ${NODE_NAME} -ojsonpath='{..namespace}'")
+  }
+}
+
 void getNuxeoImageVersion() {
   return sh(returnStdout: true, script: 'mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=nuxeo.platform.version -q -DforceStdout').trim();
 }
@@ -84,6 +90,7 @@ pipeline {
     )
   }
   environment {
+    CURRENT_NAMESPACE = getCurrentNamespace()
     APP_NAME = 'nuxeo-customer-project-sample'
     MAVEN_OPTS = "$MAVEN_OPTS -Xms2g -Xmx2g  -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
     MAVEN_ARGS = '-B -nsu'
