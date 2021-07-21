@@ -187,9 +187,9 @@ pipeline {
                   CLID=\$(echo -e "${INSTANCE_CLID}" | sed ':a;N;\$!ba;s/\\n/--/g') skaffold build -f $DOCKER_PATH/skaffold.yaml~gen
                 '''
                 def image = "${DOCKER_REGISTRY}/${ORG}/${DOCKER_IMAGE_NAME}:${VERSION}"
+                // using test in skaffold.yaml doesn't seem to work with a remote image,
+                // despite https://github.com/GoogleContainerTools/skaffold/issues/3907 supposedly solved
                 sh """
-                  # waiting skaffold + kaniko + container-stucture-tests issue
-                  #  see https://github.com/GoogleContainerTools/skaffold/issues/3907
                   docker pull ${image}
                   container-structure-test test --image ${image} --config ${DOCKER_PATH}/test/*
                 """
