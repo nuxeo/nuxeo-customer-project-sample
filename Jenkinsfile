@@ -72,7 +72,7 @@ void dockerPush(String image) {
 void dockerDeploy(String imageName) {
   String imageTag = "${ORG}/${imageName}:${VERSION}"
   String internalImage = "${DOCKER_REGISTRY}/${imageTag}"
-  String image = "${NUXEO_DOCKER_REGISTRY}/${imageTag}"
+  String image = "${PRIVATE_DOCKER_REGISTRY}/${imageTag}"
   echo "Push ${image}"
   dockerPull(internalImage)
   dockerTag(internalImage, image)
@@ -81,12 +81,12 @@ void dockerDeploy(String imageName) {
 
 pipeline {
   agent {
-    label 'jenkins-nuxeo-package-11'
+    label 'jenkins-nuxeo-package-lts-2021'
   }
   triggers {
     upstream(
       threshold: hudson.model.Result.SUCCESS,
-      upstreamProjects: "/nuxeo/nuxeo/master",
+      upstreamProjects: "/nuxeo/lts/nuxeo/2021",
     )
   }
   environment {
@@ -94,10 +94,9 @@ pipeline {
     APP_NAME = 'nuxeo-customer-project-sample'
     MAVEN_OPTS = "$MAVEN_OPTS -Xms2g -Xmx2g  -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
     MAVEN_ARGS = '-B -nsu'
-    REFERENCE_BRANCH = 'master'
+    REFERENCE_BRANCH = '2021'
     SCM_REF = "${getCommitSha1()}"
     VERSION = "${getVersion(REFERENCE_BRANCH)}"
-    NUXEO_DOCKER_REGISTRY = 'docker.packages.nuxeo.com'
     DOCKER_IMAGE_NAME = "${APP_NAME}"
     PREVIEW_NAMESPACE = "${APP_NAME}-${BRANCH_NAME.toLowerCase()}"
     ORG = 'nuxeo'
